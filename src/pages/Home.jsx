@@ -43,18 +43,12 @@ const Home = () => {
   const handleOkEditModal = () => {
     setIsEditModalOpen(false);
     console.log(newGrade)
-    // if (type newGrade === '') {
-    //   setNewGrade(user.grade)
-    // }
+    
     dispatch(updateUsername({
       id: user.id, 
       name: newName !== '' ? newName : user.name, 
       birthday: newBirthday !== '' ? newBirthday : user.birthday, 
       grade: typeof newGrade === 'string' || newGrade === null ? user.grade : newGrade
-      // name: newName,
-      // birthday: newBirthday,
-      // grade: newGrade
-
       }));
     setNewName("");
     setNewBirthday("");
@@ -148,28 +142,24 @@ const Home = () => {
 
   return (
     <Layout className="layout" style={{background: 'white', }}>
-      {/* header of page */}
       <Header className='header' style={{width: '100vw', background: 'OrangeRed', textAlign: 'center', 
         fontSize: '24px', fontWeight: 'bold', color: 'white', position: 'fixed', zIndex: 2}}>
         Table
       </Header>
 
       <Space direction='horizontal' style={{marginTop: '80px'}}>
-      {/* button for open modal */}
         <Button type="primary"
           style={{background: 'DarkOrange', width: 'fit-content', marginLeft: '30px'}}
           onClick={showModalAddModal}>
           ADD
         </Button>
 
-        {/* input for search */}
         <Search
           placeholder='Search'
           onSearch={onSearch}
           style={{width: '200px', marginLeft: '40px'}}
         />
 
-        {/* cancel search results */}
         <Button type='primary'
           style={{background: 'DarkOrange', width: 'fit-content', marginLeft: '30px'}}
           onClick={()=>dispatch(cancelFilterUser())}
@@ -179,7 +169,6 @@ const Home = () => {
 
       </Space>
 
-      {/* Modal for add user */}
       <Modal title='ADD NEW USER' 
         style={{marginTop: '100px'}}
         headStyle={{color: 'OrangeRed'}}
@@ -201,7 +190,6 @@ const Home = () => {
         <InputNumber min={0} max={10} placeholder='Grade' onChange={(value)=>{setGrade(value)}}/>
       </Modal>
 
-      {/* Modal for edit user */}
       <Modal title="EDIT USER" 
         style={{marginTop: '100px'}}
         headStyle={{color: 'OrangeRed'}}
@@ -224,7 +212,6 @@ const Home = () => {
         <InputNumber min={0} max={10} placeholder='Grade' onChange={(value)=>{setNewGrade(value)}} defaultValue={user.grade}/>
       </Modal>
       
-      {/* table with data */} 
       <div style={{display: 'block', width: '100%', padding: 30}}>
         <h3>Student math grades</h3>
         <Table dataSource={userList} columns={columns} onChange={onChange} rowKey='id' style={{marginTop: '10px'}}/>
